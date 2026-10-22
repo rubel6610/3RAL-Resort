@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
+import WeatherHeader from "@/components/WeatherHeader";
 
-const page = () => {
+export default function Home() {
   return (
-    <div>
-      hi
+    <div className="min-h-screen bg-stone-50">
+      {/* Weather Header Top Bar */}
+      <WeatherHeader />
+
+      {/* Main Page Content */}
+      <main className="p-8">
+        <h1 className="text-3xl font-serif text-[#0a3a2a] mb-2 font-bold">
+          Corral Creek Lodge
+        </h1>
+        <p className="text-stone-600">
+          Welcome to Kernville, CA
+        </p>
+      </main>
     </div>
   );
-};
-
-export default page;
+}
