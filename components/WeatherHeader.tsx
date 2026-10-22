@@ -43,8 +43,9 @@ export const DEFAULT_WEATHER_DATA: WeatherData = {
 
 export default function WeatherHeader() {
   // Live weather fetched from Open-Meteo via RTK Query
-  const { data: apiData } = useGetWeatherQuery();
-  const data =  apiData || DEFAULT_WEATHER_DATA;
+  const { data: apiData, isLoading } = useGetWeatherQuery();
+  const data = apiData || DEFAULT_WEATHER_DATA;
+
   return (
     <header className="w-full bg-[#0a3a2a] text-white border-b border-emerald-950/40 select-none py-2 px-50 max-xl:px-6">
       <div
@@ -75,10 +76,10 @@ export default function WeatherHeader() {
             />
             <div className="flex flex-col leading-tight">
               <span className="text-sm sm:text-base font-bold text-white tracking-tight">
-                {data?.currentTemp}°F
+                {isLoading ? "..." : `${data?.currentTemp}°F`}
               </span>
               <span className="text-[11px] text-emerald-100/80 font-normal whitespace-nowrap">
-                {data?.conditionText}
+                {isLoading ? "Loading..." : data?.conditionText}
               </span>
             </div>
           </div>
@@ -90,7 +91,7 @@ export default function WeatherHeader() {
         {/* Center: 4-Day Forecast (Centered) */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0 justify-self-center">
           {data?.forecast.map((item, index) => (
-            <React.Fragment key={item.day}>
+            <React.Fragment key={item.day || index}>
               {index > 0 && <div className="h-7 w-px bg-white/20" />}
 
               <div className="flex items-center gap-2">
@@ -105,9 +106,11 @@ export default function WeatherHeader() {
                   height={24}
                 />
                 <div className="flex flex-col leading-tight">
-                  <span className="text-xs text-white mb-1">{item.day}</span>
+                  <span className="text-xs text-white mb-1">
+                    {isLoading ? "..." : item.day}
+                  </span>
                   <span className="text-[11px] text-white whitespace-nowrap">
-                    {item.high}° / {item.low}°
+                    {isLoading ? "..." : `${item.high}° / ${item.low}°`}
                   </span>
                 </div>
               </div>
