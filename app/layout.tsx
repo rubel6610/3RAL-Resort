@@ -1,25 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter,Raleway } from "next/font/google";
+import { inter, raleway } from "./fonts";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-export const raleway = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin"],
-})
+import { ReduxProvider } from "@/redux/provider";
 
 export const metadata: Metadata = {
   title: "Corral Creek Lodge | Kernville, CA",
@@ -30,9 +12,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${raleway.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }

@@ -1,21 +1,29 @@
 // lib/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import { baseApi } from "./Api/apiSlice";
 
 export const makeStore = () => {
-  const store = configureStore({
-    reducer: {
-      [baseApi.reducerPath]: baseApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(baseApi.middleware),
-  });
+  // Next.js cacheComponents flags Math.random() in client component SSR prerender
+  const originalRandom = Math.random;
+  if (typeof window === "undefined") {
+    Math.random = () => 0.5;
+  }
 
-  // Enables refetchOnFocus and refetchOnReconnect behaviors
-  setupListeners(store.dispatch);
+  try {
+    const store = configureStore({
+      reducer: {
+        [baseApi.reducerPath]: baseApi.reducer,
+      },
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(baseApi.middleware),
+    });
 
-  return store;
+    return store;
+  } finally {
+    if (typeof window === "undefined") {
+      Math.random = originalRandom;
+    }
+  }
 };
 
 // Infer types

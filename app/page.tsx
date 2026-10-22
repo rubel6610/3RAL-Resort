@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import WeatherHeader from "@/components/WeatherHeader";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Weather Header Top Bar */}
-      <WeatherHeader />
+      <Suspense fallback={<div className="h-10 bg-[#0a3a2a] w-full animate-pulse" />}>
+        <WeatherHeader />
+      </Suspense>
 
       {/* Main Page Content */}
       <main className="p-8">
