@@ -15,7 +15,10 @@ export const makeStore = () => {
         [baseApi.reducerPath]: baseApi.reducer,
       },
       middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(baseApi.middleware),
+        getDefaultMiddleware({
+          immutableCheck: false,
+          serializableCheck: false,
+        }).concat(baseApi.middleware),
     });
 
     return store;

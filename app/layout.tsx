@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter, raleway } from "./fonts";
+import { inter, raleway, average } from "./fonts";
 import "./globals.css";
 import { ReduxProvider } from "@/redux/provider";
 
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${raleway.variable} h-full antialiased`}
+      className={`${inter.variable} ${raleway.variable} ${average.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>{children}</ReduxProvider>

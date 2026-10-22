@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -39,15 +39,21 @@ export const DEFAULT_WEATHER_DATA: WeatherData = {
   forecastUrl: "https://weather.com/weather/tenday/l/Kernville+CA+USCA0533",
 };
 
-
-
 export default function WeatherHeader() {
-  // Live weather fetched from Open-Meteo via RTK Query
-  const { data: apiData, isLoading } = useGetWeatherQuery();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Live weather fetched from Open-Meteo via RTK Query (deferred to client mount)
+  const { data: apiData, isLoading } = useGetWeatherQuery(undefined, {
+    skip: !mounted,
+  });
   const data = apiData || DEFAULT_WEATHER_DATA;
 
   return (
-    <header className="w-full bg-[#0a3a2a] text-white border-b border-emerald-950/40 select-none py-2 px-50 max-xl:px-6">
+    <header className="w-full bg-[#0a3a2a] text-white border-b border-emerald-950/40 select-none py-2 px-50 max-xl:px-6 relative z-50">
       <div
         className={`w-full flex items-center justify-between gap-4 overflow-x-auto scrollbar-none xl:grid xl:grid-cols-[1fr_auto_1fr] ${inter.className}`}
       >

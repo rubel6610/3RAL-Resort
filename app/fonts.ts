@@ -1,4 +1,4 @@
-import { Inter, Raleway } from "next/font/google";
+import { Inter, Raleway, Average } from "next/font/google";
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -7,5 +7,11 @@ export const inter = Inter({
 
 export const raleway = Raleway({
   variable: "--font-raleway",
+  subsets: ["latin"],
+});
+
+export const average = Average({
+  weight: "400",
+  variable: "--font-average",
   subsets: ["latin"],
 });
