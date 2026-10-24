@@ -11,8 +11,15 @@ export default function Banner() {
   const [guestCount, setGuestCount] = useState("1 Guest");
   const [guestDropdownOpen, setGuestDropdownOpen] = useState(false);
 
-  // Set today's date initially
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  // Set today's date initially & ensure video plays
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+
     const today = new Date();
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const dd = String(today.getDate()).padStart(2, "0");
@@ -24,32 +31,33 @@ export default function Banner() {
   }, []);
 
   return (
-    <section className="relative w-full h-[calc(100vh-55px)] min-h-[660px] flex flex-col justify-between overflow-hidden pt-[112px] pb-6 sm:pb-8">
-      
+    <section className="relative isolate w-full h-[calc(100vh-55px)] min-h-[660px] flex flex-col justify-between overflow-hidden pt-[112px] pb-6 sm:pb-8 bg-[#0a3a2a]">
       {/* Background Video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover -z-20 scale-105 pointer-events-none"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover scale-105 pointer-events-none z-0"
       >
         <source src="/banner/banner_video.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Natural Contrast Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55 -z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55 z-[1] pointer-events-none" />
 
       {/* 2. Middle: Hero Title & Subtitle */}
-      <div className="w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 my-auto py-4 z-20">
+      <div className="relative z-10 w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 my-auto py-4">
         <div className="max-w-[1000px]">
           {/* Main Title matching Figma specs: Font Average, 80px, line-height 104px, #F9FFFD, Uppercase */}
           <h1
             className={`${average.className} text-[36px] sm:text-[52px] lg:text-[70px] xl:text-[80px] leading-[1.15] xl:leading-[104px] text-[#F9FFFD] uppercase font-normal tracking-normal drop-shadow-md select-none`}
           >
-            Your Riverside<br className="hidden sm:inline" />
-            {" "}Stay In The Heart<br className="hidden sm:inline" />
-            {" "}Of Kernville.
+            Your Riverside
+            <br className="hidden sm:inline" /> Stay In The Heart
+            <br className="hidden sm:inline" /> Of Kernville.
           </h1>
 
           {/* Subtitle */}
@@ -63,12 +71,10 @@ export default function Banner() {
       </div>
 
       {/* 3. Bottom: Floating Booking Bar (width: 1168px, height: 98px) */}
-      <div className="w-full px-4 sm:px-6 z-20">
+      <div id="booking-bar" className="relative z-10 w-full px-4 sm:px-6 scroll-mt-24">
         <div className="w-full max-w-[1168px] min-h-[98px] mx-auto bg-[#F4F6F4]/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-white/60 px-5 sm:px-8 py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          
           {/* Inputs Container */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 items-center divide-y sm:divide-y-0 sm:divide-x divide-stone-300/80 gap-3 sm:gap-0">
-            
             {/* Arrival Date */}
             <div className="flex items-center justify-between sm:pr-6 cursor-pointer group py-1 sm:py-0">
               <div className="flex flex-col">
@@ -143,7 +149,9 @@ export default function Banner() {
                         setGuestDropdownOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-emerald-50 transition-colors ${
-                        guestCount === g ? "text-emerald-900 bg-emerald-50/60 font-bold" : "text-stone-700"
+                        guestCount === g
+                          ? "text-emerald-900 bg-emerald-50/60 font-bold"
+                          : "text-stone-700"
                       }`}
                     >
                       {g}
@@ -152,7 +160,6 @@ export default function Banner() {
                 </div>
               )}
             </div>
-
           </div>
 
           {/* Book Now Button */}
@@ -165,10 +172,8 @@ export default function Banner() {
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
-
         </div>
       </div>
-
     </section>
   );
 }

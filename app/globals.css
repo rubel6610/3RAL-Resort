@@ -3,24 +3,69 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --lodge-green: #0a3a2a;
+  --lodge-dark: #072218;
+  --lodge-cream: #fbfbfa;
+  --lodge-stone: #f4f6f4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-average);
+  --font-average: var(--font-average);
+  --font-raleway: var(--font-raleway);
+  --font-inter: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
+
+.font-average {
+  font-family: var(--font-average), Georgia, serif;
+}
+
+.font-raleway {
+  font-family: var(--font-raleway), sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Custom subtle animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cloudDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 7s ease-in-out 2s infinite;
+}
+
