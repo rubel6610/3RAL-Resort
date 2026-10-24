@@ -66,9 +66,22 @@ export const weatherApi = baseApi.injectEndpoints({
           const queryParams = {
             latitude: lat,
             longitude: lon,
-            current: ["temperature_2m", "weather_code"],
-            daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
+            current: [
+              "temperature_2m",
+              "apparent_temperature",
+              "relative_humidity_2m",
+              "wind_speed_10m",
+              "weather_code",
+            ],
+            daily: [
+              "weather_code",
+              "temperature_2m_max",
+              "temperature_2m_min",
+              "precipitation_probability_max",
+              "sunset",
+            ],
             temperature_unit: "fahrenheit",
+            wind_speed_unit: "mph",
             timezone: params?.timezone || "Europe/Zurich",
           };
 
@@ -80,8 +93,29 @@ export const weatherApi = baseApi.injectEndpoints({
           const daily = response.daily()!;
 
           const currentTemp = Math.round(current.variables(0)!.value());
-          const currentWeatherCode = Math.round(current.variables(1)!.value());
+          const feelsLike = Math.round(current.variables(1)!.value());
+          const humidity = Math.round(current.variables(2)!.value());
+          const windSpeed = Math.round(current.variables(3)!.value());
+          const currentWeatherCode = Math.round(current.variables(4)!.value());
           const currentMapped = mapWeatherCode(currentWeatherCode);
+
+          let sunsetFormatted = "6:24 PM";
+          try {
+            const sunsetVar = daily.variables(4);
+            if (sunsetVar && typeof sunsetVar.valuesInt64 === "function") {
+              const tsVal = Number(sunsetVar.valuesInt64(0));
+              if (tsVal) {
+                sunsetFormatted = new Date(tsVal * 1000).toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                  timeZone: params?.timezone || "Europe/Zurich",
+                });
+              }
+            }
+          } catch {
+            // fallback
+          }
 
           const timeStart = Number(daily.time());
           const timeEnd = Number(daily.timeEnd());
@@ -90,23 +124,42 @@ export const weatherApi = baseApi.injectEndpoints({
           const weatherCodes = daily.variables(0)!.valuesArray()!;
           const maxTemps = daily.variables(1)!.valuesArray()!;
           const minTemps = daily.variables(2)!.valuesArray()!;
+          const precipProbabilities = daily.variables(3)!.valuesArray()!;
 
+          const extendedForecast: DailyForecast[] = [];
           const forecast: DailyForecast[] = [];
           let index = 0;
           for (let t = timeStart; t < timeEnd; t += interval) {
-            // Skip today (index 0), collect the next 4 forecast days (indices 1 to 4)
-            if (index >= 1 && index <= 4) {
+            if (index < 7) {
               const date = new Date((t + utcOffsetSeconds) * 1000);
-              const day = date.toLocaleDateString("en-US", {
-                weekday: "short",
-                timeZone: "UTC",
-              });
-              forecast.push({
-                day,
+              const dayName =
+                index === 0
+                  ? "TODAY"
+                  : date.toLocaleDateString("en-US", {
+                      weekday: "short",
+                      timeZone: "UTC",
+                    }).toUpperCase();
+
+              const dayForecast: DailyForecast = {
+                day: dayName,
                 high: Math.round(maxTemps[index]),
                 low: Math.round(minTemps[index]),
                 condition: mapWeatherCode(Math.round(weatherCodes[index])).type,
-              });
+                precipitationProbability: Math.round(precipProbabilities[index] || 0),
+              };
+
+              extendedForecast.push(dayForecast);
+
+              // 4 days for the top bar header (indices 1 to 4)
+              if (index >= 1 && index <= 4) {
+                forecast.push({
+                  ...dayForecast,
+                  day: date.toLocaleDateString("en-US", {
+                    weekday: "short",
+                    timeZone: "UTC",
+                  }),
+                });
+              }
             }
             index++;
           }
@@ -116,7 +169,12 @@ export const weatherApi = baseApi.injectEndpoints({
             currentTemp,
             conditionText: currentMapped.text,
             conditionType: currentMapped.type,
+            feelsLike,
+            windSpeed,
+            humidity,
+            sunset: sunsetFormatted,
             forecast,
+            extendedForecast,
             forecastUrl:
               params?.locationName && params.locationName !== "Switzerland"
                 ? `https://weather.com/weather/tenday/l/${encodeURIComponent(params.locationName)}`
