@@ -38,15 +38,16 @@ export default function Navbar() {
           : "top-[55px] bg-transparent"
       } ${inter.className}`}
     >
-      <div className={`w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 flex items-center justify-between transition-all duration-300 ${
-        scrolled ? "h-[88px]" : "h-[112px] py-[15px]"
-      }`}>
-        
+      <div
+        className={`w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 flex items-center justify-between transition-all duration-300 ${
+          scrolled ? "h-[88px]" : "h-[112px] py-[15px]"
+        }`}
+      >
         {/* Left: Brand Logo */}
         <Link href="/" className="shrink-0 flex items-center group">
-          <div className="relative w-[82px] h-[82px] rounded-xl overflow-hidden shadow-sm transition-transform group-hover:scale-105 duration-200">
+          <div className="relative w-[100px] h-[100px]">
             <Image
-              src="/logo/logo.png"
+              src="/logo/logo2.png"
               alt="Corral Creek Lodge Logo"
               fill
               sizes="82px"
@@ -104,7 +105,6 @@ export default function Navbar() {
             <Menu className="w-6 h-6" />
           )}
         </button>
-
       </div>
 
       {/* Mobile Drawer Menu */}
@@ -122,7 +122,9 @@ export default function Navbar() {
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`text-base font-medium py-1 transition-colors ${
-                  isActive ? "text-white font-bold" : "text-white/80 hover:text-white"
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 {link.name}

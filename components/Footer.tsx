@@ -3,31 +3,24 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Compass,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Compass } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="w-full bg-[#072218] text-white pt-16 pb-10 border-t border-emerald-950">
       <div className="max-w-[1520px] mx-auto px-6 sm:px-12 lg:px-20 2xl:px-24">
-        
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-emerald-900/40">
-          
           {/* Brand Info (Col 1-4) */}
           <div className="lg:col-span-4 space-y-5">
             <Link href="/" className="inline-flex items-center space-x-3 group">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden border border-white/20 shadow-md">
+              <div className="relative w-[100px] h-[100px] ">
                 <Image
-                  src="/logo/logo.png"
+                  src="/logo/logo2.png"
                   alt="Corral Creek Lodge Logo"
                   fill
-                  sizes="56px"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="60px"
+                  className="object-cover transition-transform"
                 />
               </div>
               <div>
@@ -291,7 +284,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
@@ -325,7 +317,6 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-
       </div>
     </footer>
   );
