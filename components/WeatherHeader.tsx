@@ -26,17 +26,17 @@ export interface WeatherData {
 
 // Fallback data while initial request loads
 export const DEFAULT_WEATHER_DATA: WeatherData = {
-  location: "Kernville, CA",
-  currentTemp: 0,
+  location: "Switzerland",
+  currentTemp: 32,
   conditionText: "Partly Cloudy",
   conditionType: "partly-cloudy",
   forecast: [
-    { day: "Thu", high: 78, low: 54, condition: "sunny" },
-    { day: "Fri", high: 80, low: 56, condition: "sunny" },
-    { day: "Sat", high: 82, low: 58, condition: "sunny" },
-    { day: "Sun", high: 81, low: 57, condition: "partly-cloudy" },
+    { day: "Thu", high: 45, low: 28, condition: "sunny" },
+    { day: "Fri", high: 42, low: 26, condition: "sunny" },
+    { day: "Sat", high: 40, low: 25, condition: "cloudy" },
+    { day: "Sun", high: 38, low: 24, condition: "partly-cloudy" },
   ],
-  forecastUrl: "https://weather.com/weather/tenday/l/Kernville+CA+USCA0533",
+  forecastUrl: "https://weather.com/weather/tenday/l/Switzerland",
 };
 
 export default function WeatherHeader() {
@@ -130,7 +130,7 @@ export default function WeatherHeader() {
         {/* Right: View Full Forecast Link */}
         <div className="shrink-0 pl-2 justify-self-end">
           <Link
-            href={data?.forecastUrl || "https://weather.com/weather/tenday/l/Kernville+CA+USCA0533"}
+            href={data?.forecastUrl || "https://weather.com/weather/tenday/l/Switzerland"}
             target="_blank"
             rel="noopener noreferrer"
             className={`group inline-flex items-center gap-1 text-base hover:text-white ${raleway.className} transition-colors whitespace-nowrap`}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { inter, raleway } from "@/app/fonts";
+import { average, inter, raleway } from "@/app/fonts";
 
 const NAV_LINKS = [
   { name: "Home", href: "/" },
@@ -40,20 +40,35 @@ export default function Navbar() {
     >
       <div
         className={`w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 flex items-center justify-between transition-all duration-300 ${
-          scrolled ? "h-[88px]" : "h-[112px] py-[15px]"
+          scrolled ? "h-[88px]" : "h-[120px] py-[10px]"
         }`}
       >
-        {/* Left: Brand Logo */}
-        <Link href="/" className="shrink-0 flex items-center group">
-          <div className="relative w-[100px] h-[100px]">
-            <Image
-              src="/logo/logo2.png"
-              alt="Corral Creek Lodge Logo"
-              fill
-              sizes="82px"
-              priority
-              className="object-cover"
-            />
+        {/* Left: Brand Logo & Name */}
+        <Link
+          href="/"
+          className="shrink-0 flex items-center gap-3 sm:gap-3.5 group"
+        >
+          <div className="relative w-[52px] h-[52px] sm:w-[58px] sm:h-[58px] rounded-full bg-white shadow-md p-1 flex items-center justify-center shrink-0 border border-white/40 transition-transform duration-200 group-hover:scale-105">
+            <div className="relative w-full h-full rounded-full overflow-hidden">
+              <Image
+                src="/logo/3Ral-logo.png"
+                alt="3RAL Resort Logo"
+                fill
+                sizes="64px"
+                priority
+                className="object-contain"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <span
+              className={`${average.className} text-xl sm:text-2xl font-normal tracking-wide text-white block leading-tight group-hover:text-emerald-100 transition-colors`}
+            >
+              3RAL Resort
+            </span>
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-emerald-300/80 font-inter font-medium leading-tight mt-0.5">
+              Switzerland
+            </span>
           </div>
         </Link>
 

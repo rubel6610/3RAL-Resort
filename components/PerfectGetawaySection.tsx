@@ -54,8 +54,8 @@ export default function PerfectGetawaySection() {
 
             <div className="space-y-4 text-[#3d5446] font-inter text-base lg:text-[16.5px] leading-relaxed">
               <p>
-                Discover The Beauty Of The Sequoia National Forest At Corral
-                Creek Lodge. Located Along The Kern River, Our 20 Comfortable
+                Discover The Beauty Of The Sequoia National Forest At 3RAL
+                Resort. Located Along The Kern River, Our 20 Comfortable
                 Rooms, Including 4 Pet-Friendly Options, Offer A Relaxing Base
                 For Your Next Adventure.
               </p>

@@ -33,7 +33,7 @@ export default function BottomCtaBanner() {
           </h2>
 
           <p className="font-inter text-emerald-100/90 text-base sm:text-lg lg:text-[18px] max-w-2xl leading-relaxed">
-            Find Your Perfect Room At Corral Creek Lodge And Make Your Next Stay
+            Find Your Perfect Room At 3RAL Resort And Make Your Next Stay
             In Kernville One To Remember.
           </p>
 

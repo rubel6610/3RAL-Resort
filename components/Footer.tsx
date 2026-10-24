@@ -14,21 +14,23 @@ export default function Footer() {
           {/* Brand Info (Col 1-4) */}
           <div className="lg:col-span-4 space-y-5">
             <Link href="/" className="inline-flex items-center space-x-3 group">
-              <div className="relative w-[100px] h-[100px] ">
-                <Image
-                  src="/logo/logo2.png"
-                  alt="Corral Creek Lodge Logo"
-                  fill
-                  sizes="60px"
-                  className="object-cover transition-transform"
-                />
+              <div className="relative w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full bg-white shadow-md p-1.5 flex items-center justify-center shrink-0 border border-white/20 transition-transform duration-200 group-hover:scale-105">
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <Image
+                    src="/logo/3Ral-logo.png"
+                    alt="3RAL Resort Logo"
+                    fill
+                    sizes="72px"
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <div>
                 <span className="font-average text-2xl tracking-wide text-white block">
-                  Corral Creek Lodge
+                  3RAL Resort
                 </span>
                 <span className="text-[11px] uppercase tracking-widest text-emerald-300/80 font-inter">
-                  Kernville, California
+                  Switzerland
                 </span>
               </div>
             </Link>
@@ -261,10 +263,10 @@ export default function Footer() {
               <li className="flex items-start space-x-2.5">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <a
-                  href="mailto:reservations@corralcreekresort.com"
+                  href="mailto:reservations@3ralresort.com"
                   className="hover:text-emerald-300 break-all transition-colors"
                 >
-                  reservations@corralcreekresort.com
+                  reservations@3ralresort.com
                 </a>
               </li>
               <li className="flex items-center space-x-2.5">
@@ -278,9 +280,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-2.5">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>
-                  15.5 Mile Mountain 99, Kernville, CA, United States, 91238
-                </span>
+                <span>Switzerland</span>
               </li>
             </ul>
           </div>
@@ -288,7 +288,7 @@ export default function Footer() {
 
         {/* Bottom Legal & Copyright Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-inter text-emerald-300/60 gap-4">
-          <p>© 2026. All rights reserved. corral creek lodge</p>
+          <p>© 2026. All rights reserved. 3RAL Resort</p>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link

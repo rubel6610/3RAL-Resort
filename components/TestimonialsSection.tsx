@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
     date: "22 April, 2026",
     rating: "5/5",
     review:
-      "Corral Creek Lodge exceeded all expectations. The views of the Sierra mountains are breathtaking, the beds are super comfortable, and it's just minutes from the Trail of 100 Giants and downtown Kernville. 10/10 lodge experience!",
+      "3RAL Resort exceeded all expectations. The views of the Sierra mountains are breathtaking, the beds are super comfortable, and it's just minutes from the Trail of 100 Giants and downtown Kernville. 10/10 lodge experience!",
   },
 ];
 
@@ -73,8 +73,8 @@ export default function TestimonialsSection() {
               Loved By Our Guests
             </h2>
             <p className="font-inter text-[#4a6153] text-base lg:text-[17px] leading-relaxed">
-              Hear From Guests Who&apos;Ve Enjoyed Their Stay At Corral Creek
-              Lodge. Discover What Makes Their Time In Kernville Special.
+              Hear From Guests Who&apos;Ve Enjoyed Their Stay At 3RAL Resort.
+              Discover What Makes Their Time In Kernville Special.
             </p>
           </div>
 

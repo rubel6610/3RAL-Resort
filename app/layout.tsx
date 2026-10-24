@@ -4,8 +4,8 @@ import "./globals.css";
 import { ReduxProvider } from "@/redux/provider";
 
 export const metadata: Metadata = {
-  title: "Corral Creek Lodge | Kernville, CA",
-  description: "Corral Creek Lodge",
+  title: "3RAL Resort | Switzerland",
+  description: "3RAL Resort",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

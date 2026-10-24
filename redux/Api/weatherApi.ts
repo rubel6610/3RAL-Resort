@@ -36,6 +36,9 @@ function mapWeatherCode(code: number): {
     case 71:
     case 73:
     case 75:
+    case 77:
+    case 85:
+    case 86:
       return { text: "Snow", type: "rainy" };
     case 80:
     case 81:
@@ -55,9 +58,9 @@ export const weatherApi = baseApi.injectEndpoints({
     getWeather: builder.query<WeatherData, WeatherQueryParams | void>({
       queryFn: async (params) => {
         try {
-          const lat = params?.latitude ?? 35.7547;
-          const lon = params?.longitude ?? -118.4251;
-          const locationName = params?.locationName ?? "Kernville, CA";
+          const lat = params?.latitude ?? 46.8182;
+          const lon = params?.longitude ?? 8.2275;
+          const locationName = params?.locationName ?? "Switzerland";
 
           const url = "https://api.open-meteo.com/v1/forecast";
           const queryParams = {
@@ -66,7 +69,7 @@ export const weatherApi = baseApi.injectEndpoints({
             current: ["temperature_2m", "weather_code"],
             daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
             temperature_unit: "fahrenheit",
-            timezone: params?.timezone || "auto",
+            timezone: params?.timezone || "Europe/Zurich",
           };
 
           const responses = await fetchWeatherApi(url, queryParams);
@@ -115,9 +118,9 @@ export const weatherApi = baseApi.injectEndpoints({
             conditionType: currentMapped.type,
             forecast,
             forecastUrl:
-              params?.locationName && params.locationName !== "Kernville, CA"
+              params?.locationName && params.locationName !== "Switzerland"
                 ? `https://weather.com/weather/tenday/l/${encodeURIComponent(params.locationName)}`
-                : "https://weather.com/weather/tenday/l/Kernville+CA+USCA0533",
+                : "https://weather.com/weather/tenday/l/Switzerland",
           };
 
           return { data: weatherData };

@@ -62,7 +62,7 @@ export default function PropertyMapSection() {
             Take A Look Around
           </h2>
           <p className="font-inter text-[#4a6153] text-base lg:text-[17px] mt-3 leading-relaxed">
-            Explore Corral Creek Lodge From Every Angle And Get A Feel For Where
+            Explore 3RAL Resort From Every Angle And Get A Feel For Where
             You&apos;ll Stay Before You Arrive.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function PropertyMapSection() {
           
           <Image
             src="/images/property_map.jpg"
-            alt="Corral Creek Lodge 3D property map overview in Kernville"
+            alt="3RAL Resort 3D property map overview in Kernville"
             fill
             sizes="100vw"
             className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
@@ -86,9 +86,9 @@ export default function PropertyMapSection() {
               </div>
               <p className="font-inter text-xs sm:text-sm text-[#274032] leading-relaxed">
                 <strong className="text-[#0a3a2a] font-semibold block">
-                  Corral Creek Lodge Grounds
+                  3RAL Resort Grounds
                 </strong>
-                Explore Corral Creek Lodge From Every Angle And Get A Feel For
+                Explore 3RAL Resort From Every Angle And Get A Feel For
                 Where You&apos;ll Stay Before You Arrive.
               </p>
             </div>

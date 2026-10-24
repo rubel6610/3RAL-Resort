@@ -10,17 +10,17 @@ export default function WelcomeSection() {
         <div className="w-full lg:w-1/2 flex flex-col justify-center py-16 sm:py-20 lg:py-24 pl-6 sm:pl-12 lg:pl-14 xl:pl-20 2xl:pl-[200px] pr-6 lg:pr-10 xl:pr-14 z-10">
           <div className="max-w-[580px] space-y-6">
             <h2 className="font-average text-3xl sm:text-4xl lg:text-[46px] leading-[1.2] text-[#11271d] tracking-normal">
-              Welcome To Corral Creek Lodge
+              Welcome To 3RAL Resort
             </h2>
 
             <div className="space-y-5 text-[#3a4f43] text-base lg:text-[16.5px] leading-[1.75] font-inter">
               <p>
                 <strong className="text-[#0a3a2a] font-semibold">
-                  Corral Creek Lodge
+                  3RAL Resort
                 </strong>{" "}
                 Is Your Home Away From Home In The Sequoia National Forest. At
-                The Intersection Of Comfort And Convenience Lies Corral Creek
-                Lodge. Where You Can Take Full Advantage Of Numerous Amenities
+                The Intersection Of Comfort And Convenience Lies 3RAL Resort.
+                Where You Can Take Full Advantage Of Numerous Amenities
                 And Services That Are Guaranteed To Make Your Stay With Us A
                 Memorable One.
               </p>
@@ -50,7 +50,7 @@ export default function WelcomeSection() {
         <div className="w-full lg:w-1/2 relative min-h-[440px] sm:min-h-[540px] lg:min-h-[640px] flex self-stretch">
           <Image
             src="/images/welcome_lodge2.png"
-            alt="Corral Creek Lodge exterior nestled in Sequoia National Forest"
+            alt="3RAL Resort exterior nestled in Sequoia National Forest"
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 50vw"
