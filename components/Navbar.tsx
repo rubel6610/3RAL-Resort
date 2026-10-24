@@ -34,11 +34,13 @@ export default function Navbar() {
     <header
       className={`fixed left-0 w-full z-40 transition-all duration-300 ${
         scrolled
-          ? "top-0 bg-white/10 backdrop-blur-sm "
+          ? "top-0 bg-[#07241a]/95 backdrop-blur-md shadow-2xl border-b border-emerald-900/30 py-1"
           : "top-[55px] bg-transparent"
       } ${inter.className}`}
     >
-      <div className="w-full max-w-[1920px] max-h-[112px] h-[112px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 py-[15px] flex items-center justify-between">
+      <div className={`w-full max-w-[1920px] mx-auto px-[200px] max-2xl:px-24 max-xl:px-8 max-md:px-4 flex items-center justify-between transition-all duration-300 ${
+        scrolled ? "h-[88px]" : "h-[112px] py-[15px]"
+      }`}>
         
         {/* Left: Brand Logo */}
         <Link href="/" className="shrink-0 flex items-center group">
